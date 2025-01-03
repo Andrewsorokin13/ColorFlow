@@ -176,10 +176,10 @@ private extension SettingsViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let prevButton = UIBarButtonItem(title: "⬆️", style: .plain, target: self, action: #selector(navigateToPreviousField))
+        let prevButton = UIBarButtonItem(title: "🔺", style: .plain, target: self, action: #selector(navigateToPreviousField))
         prevButton.tag = index
         
-        let nextButton = UIBarButtonItem(title: "⬇️", style: .plain, target: self, action: #selector(navigateToNextField))
+        let nextButton = UIBarButtonItem(title: "🔻", style: .plain, target: self, action: #selector(navigateToNextField))
         nextButton.tag = index
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
