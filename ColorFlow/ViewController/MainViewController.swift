@@ -7,23 +7,34 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+protocol SettingsViewControllerDelegate: AnyObject {
+    func setColor(_ color: UIColor)
+    func getRGB(_ red:String, _ green:String, _ blue:String, _ alpha:String)
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+final class MainViewController: UIViewController {
+    
+    // MARK: - IB Outlets
+    
+    @IBOutlet weak var colorLabel: UILabel!
+    
+    // MARK: - Overrides Methods
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let settingsVC = segue.destination as? SettingsViewController
+        settingsVC?.delegate = self
+        settingsVC?.colorMainView = view.backgroundColor
     }
     
+}
+// MARK: - Conform SettingsViewControllerDelegate
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension MainViewController: SettingsViewControllerDelegate {
+    func getRGB(_ red: String, _ green: String, _ blue: String, _ alpha: String) {
+        colorLabel.text = "Red: \(red), Green: \(green), Blue: \(blue), Alpha: \(alpha)"
     }
-    */
-
+    
+    func setColor(_ color: UIColor) {
+        view.backgroundColor = color
+    }
 }
